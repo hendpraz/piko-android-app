@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import com.hpdev.piko.R
 import com.hpdev.piko.databinding.FragmentHomeBinding
 import com.hpdev.piko.ui.search.SearchActivity
@@ -29,18 +30,28 @@ class HomeFragment : Fragment() {
 
         val contactSearch = fragmentHomeBinding.contactEt
 
+        // if clicked, start search activity
         contactSearch.setOnClickListener {
-            val intent = Intent(context, SearchActivity::class.java)
-            startActivity(intent)
+            startSearchActivity()
         }
 
+        // if focused, start search activity
         contactSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                val intent = Intent(context, SearchActivity::class.java)
-                startActivity(intent)
+                startSearchActivity()
             }
-
-            println(hasFocus)
         }
+
+        // if there is no contact, show add contact card
+        fragmentHomeBinding.addContactButton.setOnClickListener {
+            Toast.makeText(context, "You clicked add contact button", Toast.LENGTH_SHORT).show()
+        }
+
+        // else, show favorites and recent contacts
+    }
+
+    private fun startSearchActivity() {
+        val intent = Intent(context, SearchActivity::class.java)
+        startActivity(intent)
     }
 }
