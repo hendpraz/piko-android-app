@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
     <RelativeLayout
@@ -16,7 +17,7 @@
         <TextView
             android:id="@+id/tvAppName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="People I Know - On The List"
             android:textSize="18sp"
             android:maxLines="1"
@@ -39,8 +40,28 @@
             android:text="@string/tv_home_title"
             android:textSize="36sp"
             android:maxLines="2"
-            android:layout_marginTop="26dp"
+            android:layout_below="@+id/tvAppName"
             android:textColor="@color/dark_blue"
+            android:layout_alignParentStart="true"
+            />
+
+        <EditText
+            android:id="@+id/contactEt"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/tvHomeTitle"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:drawableStart="@drawable/ic_baseline_person_search_24"
+            android:drawablePadding="12dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/raleway_semi_bold"
+            android:hint="Search saved contacts..."
+            android:inputType="none"
+            android:layout_alignParentStart="true"
             />
     </RelativeLayout>
 
