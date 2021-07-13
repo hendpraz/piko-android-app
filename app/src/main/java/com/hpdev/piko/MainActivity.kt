@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigationView = findViewById(R.id.bottomnavigationbar)
+        bottomNavigationView = findViewById(R.id.bottomNavigationBar)
 
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(2).isEnabled = false
 
-        supportFragmentManager.beginTransaction().replace(R.id.framecontainer, HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.frameContainer, HomeFragment()).commit()
 
         bottomNavigationView.setOnItemSelectedListener {
             val temp: Fragment = when (it.itemId) {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 else -> HomeFragment()
             }
 
-            supportFragmentManager.beginTransaction().replace(R.id.framecontainer, temp).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.frameContainer, temp).commit()
             true
         }
 
