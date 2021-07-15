@@ -28,30 +28,36 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // set up search edit text
+        setUpSearchEditText()
+
+        // if there is no contact, show add contact card
+        if (false) {
+            val childFragment = HomeCardFragment()
+            val transaction = childFragmentManager.beginTransaction()
+            transaction.replace(R.id.frameContainerHome, childFragment).commit()
+        } else { // else, show favorites and recent contacts
+            val childFragment = HomeContactsFragment()
+            val transaction = childFragmentManager.beginTransaction()
+            transaction.replace(R.id.frameContainerHome, childFragment).commit()
+        }
+    }
+
+    private fun setUpSearchEditText() {
         val contactSearch = fragmentHomeBinding.contactEt
 
         // if clicked, start search activity
         contactSearch.setOnClickListener {
-            startSearchActivity()
+            val intent = Intent(context, SearchActivity::class.java)
+            startActivity(intent)
         }
 
         // if focused, start search activity
         contactSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                startSearchActivity()
+                val intent = Intent(context, SearchActivity::class.java)
+                startActivity(intent)
             }
         }
-
-        // if there is no contact, show add contact card
-        fragmentHomeBinding.addContactButton.setOnClickListener {
-            Toast.makeText(context, "You clicked add contact button", Toast.LENGTH_SHORT).show()
-        }
-
-        // else, show favorites and recent contacts
-    }
-
-    private fun startSearchActivity() {
-        val intent = Intent(context, SearchActivity::class.java)
-        startActivity(intent)
     }
 }

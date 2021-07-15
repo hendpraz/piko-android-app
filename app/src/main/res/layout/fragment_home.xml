@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="22dp"
-        android:layout_marginEnd="22dp"
         android:layout_marginTop="18dp"
         >
 
@@ -23,6 +21,7 @@
             android:maxLines="1"
             android:layout_alignParentStart="true"
             android:fontFamily="@font/raleway_semi_bold"
+            android:layout_marginEnd="22dp"
             />
 
         <ImageView
@@ -31,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_baseline_settings_24"
+            android:layout_marginEnd="22dp"
             />
 
         <TextView
@@ -44,6 +44,7 @@
             android:layout_below="@+id/tvAppName"
             android:textColor="@color/dark_blue"
             android:layout_alignParentStart="true"
+            android:layout_marginEnd="22dp"
             />
 
         <EditText
@@ -63,61 +64,16 @@
             android:hint="Search saved contacts..."
             android:inputType="none"
             android:layout_alignParentStart="true"
+            android:layout_marginEnd="22dp"
             />
 
-        <TextView
-            android:id="@+id/addContactBanner"
+        <FrameLayout
+            android:id="@+id/frameContainerHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:text="Start adding a contact"
             android:layout_below="@id/contactEt"
+            android:layout_marginTop="18dp"
             />
-        
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_below="@id/addContactBanner"
-            android:layout_marginTop="12dp"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardElevation="6dp"
-            android:focusable="true">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/custom_card"
-                >
-
-                <ImageView
-                    android:id="@+id/cardImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/add_contact"
-                    />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/addContactButton"
-                    android:backgroundTint="@color/light_blue"
-                    android:textColor="@color/dark_blue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/cardImage"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/raleway_bold"
-                    android:text="add contact"
-                    android:textAllCaps="false"
-                    android:drawableEnd="@drawable/ic_baseline_person_add_24"
-                    app:cornerRadius="8dp"
-                    />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
 </FrameLayout>
