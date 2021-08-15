@@ -1,21 +1,17 @@
 package com.hpdev.piko.ui.home
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hpdev.piko.R
 import com.hpdev.piko.data.UserEntity
-import com.hpdev.piko.databinding.ListHomeItem1Binding
 
-class HomeUserAdapter(private val listUser: MutableList<UserEntity>) : RecyclerView.Adapter<HomeUserAdapter.ListViewHolder>() {
+class HomeFavoritesAdapter(private val listUser: MutableList<UserEntity>) : RecyclerView.Adapter<HomeFavoritesAdapter.ListViewHolder>() {
     lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setData(myListUser: MutableList<UserEntity>) {

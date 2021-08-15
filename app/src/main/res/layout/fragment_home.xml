@@ -65,15 +65,26 @@
             android:inputType="none"
             android:layout_alignParentStart="true"
             android:layout_marginEnd="22dp"
+            android:layout_marginBottom="10dp"
             />
 
-        <FrameLayout
-            android:id="@+id/frameContainerHome"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingBottom="56dp"
             android:layout_below="@id/contactEt"
-            android:layout_marginTop="18dp"
-            />
-    </RelativeLayout>
+            >
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:id="@+id/frameContainerHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
 </FrameLayout>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/addContactBanner"
+            android:id="@+id/tvHomeFavorites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -24,7 +24,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             app:cardElevation="6dp"
             android:layout_marginTop="12dp"
-            android:layout_below="@id/addContactBanner"
+            android:layout_below="@id/tvHomeFavorites"
             android:focusable="true">
 
             <RelativeLayout

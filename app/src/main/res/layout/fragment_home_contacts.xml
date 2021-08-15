@@ -11,19 +11,50 @@
         >
 
         <TextView
-            android:id="@+id/addContactBanner"
+            android:id="@+id/tvHomeFavorites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:text="Recently Accessed"
+            android:text="@string/favorites_title"
+            />
+
+        <TextView
+            android:id="@+id/tvFavViewAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/dark_blue"
+            android:text="@string/view_all"
+            android:layout_marginEnd="22dp"
+            android:gravity="end"
             />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeContacts"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:layout_below="@id/addContactBanner"
+            android:layout_below="@id/tvHomeFavorites"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            />
+
+        <TextView
+            android:id="@+id/tvRecentlyAdded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/recently_added"
+            android:layout_below="@id/rvHomeContacts"
+            android:layout_marginTop="16dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomeRecent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvRecentlyAdded"
             android:layout_marginTop="12dp"
             android:orientation="horizontal"
             />

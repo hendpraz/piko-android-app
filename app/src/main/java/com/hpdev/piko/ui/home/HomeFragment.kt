@@ -31,13 +31,16 @@ class HomeFragment : Fragment() {
         // set up search edit text
         setUpSearchEditText()
 
-        // if there is no contact, show add contact card
-        if (false) {
-            val childFragment = HomeCardFragment()
+        val isContactsExist = true
+
+        // if a contact exists, show favorites and recent contacts
+        if (isContactsExist) {
+            val childFragment = HomeContactsFragment()
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.frameContainerHome, childFragment).commit()
-        } else { // else, show favorites and recent contacts
-            val childFragment = HomeContactsFragment()
+
+        } else { // else, show add contact card
+            val childFragment = HomeCardFragment()
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.frameContainerHome, childFragment).commit()
         }
