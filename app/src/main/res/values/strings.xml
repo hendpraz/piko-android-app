@@ -8,4 +8,15 @@
     <string name="view_all">View All</string>
     <string name="favorites_title">Favorites</string>
     <string name="fab_main_activity">FAB Main Activity</string>
+    <string name="contact_details_title">Contact Details</string>
+    <string name="contact_details_share">contact details share</string>
+    <string name="contact_details_back">contact details back</string>
+    <string name="contact_details_icon">Contact Image</string>
+    <string name="contact_details_text">0812-3456-7890</string>
+    <string name="contact_section_header">Contact</string>
+    <string name="contact_header_nickname">Nickname</string>
+    <string name="contact_header_full_name">This Is A Full Name</string>
+    <string name="contact_avatar_image">Profile Picture Image</string>
+    <string name="profile_picture_header">Profile Picture Image</string>
+    <string name="contact_category">Lecturer</string>
 </resources>

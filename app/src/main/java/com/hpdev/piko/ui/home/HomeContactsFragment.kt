@@ -128,7 +128,7 @@ class HomeContactsFragment : Fragment(){
         return listUser
     }
 
-    private fun generateDummyUsers() : MutableList<UserEntity> {
+    private fun generateDummyUsers2() : MutableList<UserEntity> {
         val listUser = mutableListOf<UserEntity>()
 
         listUser.add(
@@ -137,7 +137,7 @@ class HomeContactsFragment : Fragment(){
                 fullName = "Hendry Prasetya",
                 nickname = "Hendry",
                 mainCategory = "College Friends",
-                avatar = R.drawable.add_contact,
+                avatar = R.drawable.man_1,
                 mainContact = "@hendryprasetyaa (IG)"
             )
         )
@@ -148,7 +148,68 @@ class HomeContactsFragment : Fragment(){
                 fullName = "Vian Aldi",
                 nickname = "Bian Barudi",
                 mainCategory = "HighSchool Friends",
-                avatar = R.drawable.add_contact,
+                avatar = R.drawable.man_2,
+                mainContact = "@vian_aldi (IG)"
+            )
+        )
+
+        listUser.add(
+            UserEntity(
+                id = 5,
+                fullName = "Katarina Devon",
+                nickname = "Karina",
+                mainCategory = "Friend",
+                avatar = R.drawable.woman_1,
+                mainContact = "@karina_devon (IG)"
+            )
+        )
+
+        listUser.add(
+            UserEntity(
+                id = 6,
+                fullName = "Jennie Ruby Jane",
+                nickname = "Jennie",
+                mainCategory = "Friend",
+                avatar = R.drawable.woman_2,
+                mainContact = "@jennierubyjane (IG)"
+            )
+        )
+
+        listUser.add(
+            UserEntity(
+                id = 7,
+                fullName = "John Mayer",
+                nickname = "John",
+                mainCategory = "Friend",
+                avatar = R.drawable.man_6,
+                mainContact = "0814-2325-2442 (WA)"
+            )
+        )
+
+        return listUser
+    }
+
+    private fun generateDummyUsers() : MutableList<UserEntity> {
+        val listUser = mutableListOf<UserEntity>()
+
+        listUser.add(
+            UserEntity(
+                id = 0,
+                fullName = "Hendry Prasetya",
+                nickname = "Hendry",
+                mainCategory = "College Friends",
+                avatar = R.drawable.man_1,
+                mainContact = "@hendryprasetyaa (IG)"
+            )
+        )
+
+        listUser.add(
+            UserEntity(
+                id = 1,
+                fullName = "Vian Aldi",
+                nickname = "Bian Barudi",
+                mainCategory = "HighSchool Friends",
+                avatar = R.drawable.man_2,
                 mainContact = "@vian_aldi (IG)"
             )
         )
@@ -159,7 +220,7 @@ class HomeContactsFragment : Fragment(){
                 fullName = "Mr. Pambudi Luhut",
                 nickname = "Pak Pam",
                 mainCategory = "Lecturer",
-                avatar = R.drawable.add_contact,
+                avatar = R.drawable.man_3,
                 mainContact = "@pambudi_lht (IG)"
             )
         )
@@ -170,7 +231,7 @@ class HomeContactsFragment : Fragment(){
                 fullName = "Khairul Akmal",
                 nickname = "BAKWO CAK KHAIRUL",
                 mainCategory = "Family",
-                avatar = R.drawable.add_contact,
+                avatar = R.drawable.man_4,
                 mainContact = "0812-2345-2312 (WA)"
             )
         )
@@ -181,7 +242,7 @@ class HomeContactsFragment : Fragment(){
                 fullName = "Marechiyo Omaeda",
                 nickname = "Omaeda",
                 mainCategory = "Others",
-                avatar = R.drawable.add_contact,
+                avatar = R.drawable.man_5,
                 mainContact = "0814-2325-2312 (WA)"
             )
         )

@@ -64,7 +64,7 @@ class HomeFavoritesAdapter(private val listUser: MutableList<UserEntity>) : Recy
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView : ImageView = itemView.findViewById(R.id.imageView)
+        var imageView : ImageView = itemView.findViewById(R.id.imgAvatar)
         var tvHorizontal : TextView = itemView.findViewById(R.id.tvHorizontal)
         val overlayView : View = itemView.findViewById(R.id.overlayView)
     }
