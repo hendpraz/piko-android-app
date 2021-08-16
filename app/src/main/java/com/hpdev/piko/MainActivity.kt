@@ -1,5 +1,6 @@
 package com.hpdev.piko
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -7,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hpdev.piko.ui.add_contact.AddContactActivity
+import com.hpdev.piko.ui.contacts.ContactsActivity
 import com.hpdev.piko.ui.contacts.ContactsFragment
 import com.hpdev.piko.ui.history.HistoryFragment
 import com.hpdev.piko.ui.home.HomeFragment
@@ -41,7 +44,10 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            Toast.makeText(this@MainActivity, "You clicked plus button", Toast.LENGTH_SHORT).show()
+            val addContactIntent = Intent(this@MainActivity, AddContactActivity::class.java)
+
+            // start activity, to add contact list page
+            startActivity(addContactIntent)
         }
     }
 }

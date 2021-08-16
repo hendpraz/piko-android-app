@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
 import com.hpdev.piko.data.UserEntity
 import com.hpdev.piko.databinding.FragmentHomeContactsBinding
+import com.hpdev.piko.ui.contacts.ContactsActivity
 import com.hpdev.piko.ui.detail.DetailUserActivity
+import com.hpdev.piko.ui.favorites.FavoritesActivity
 
 class HomeContactsFragment : Fragment(){
     private lateinit var homeContactsBinding: FragmentHomeContactsBinding
@@ -35,13 +37,16 @@ class HomeContactsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favoritesExist = true
+        val favoritesExist = false
 
         if (favoritesExist) {
             favoriteUsers = generateDummyUsers()
 
             homeContactsBinding.tvFavViewAll.setOnClickListener {
-                Toast.makeText(activity, "Go to Favorites page...", Toast.LENGTH_SHORT).show()
+                val favoritesIntent = Intent(activity, FavoritesActivity::class.java)
+
+                // start activity, to favorites list page
+                startActivity(favoritesIntent)
             }
 
             favoritesAdapter = HomeFavoritesAdapter(favoriteUsers)
@@ -64,7 +69,10 @@ class HomeContactsFragment : Fragment(){
             favoritesAdapter = HomeFavoritesAdapter(favoriteUsers)
             favoritesAdapter.onItemClickCallback = (object : HomeFavoritesAdapter.OnItemClickCallback {
                 override fun onItemClick(user: UserEntity) {
-                    Toast.makeText(activity, "Go to AddFavorite page...", Toast.LENGTH_SHORT).show()
+                    val contactsIntent = Intent(activity, ContactsActivity::class.java)
+
+                    // start activity, to contacts list page
+                    startActivity(contactsIntent)
                 }
             })
         }

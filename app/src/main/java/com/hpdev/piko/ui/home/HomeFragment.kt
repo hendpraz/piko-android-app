@@ -10,7 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import com.hpdev.piko.R
 import com.hpdev.piko.databinding.FragmentHomeBinding
+import com.hpdev.piko.ui.contacts.ContactsActivity
 import com.hpdev.piko.ui.search.SearchActivity
+import com.hpdev.piko.ui.settings.SettingsActivity
 
 class HomeFragment : Fragment() {
 
@@ -43,6 +45,14 @@ class HomeFragment : Fragment() {
             val childFragment = HomeCardFragment()
             val transaction = childFragmentManager.beginTransaction()
             transaction.replace(R.id.frameContainerHome, childFragment).commit()
+        }
+
+        // settings button
+        fragmentHomeBinding.imgSetting.setOnClickListener {
+            val settingsIntent = Intent(activity, SettingsActivity::class.java)
+
+            // start activity, to settings page
+            startActivity(settingsIntent)
         }
     }
 
