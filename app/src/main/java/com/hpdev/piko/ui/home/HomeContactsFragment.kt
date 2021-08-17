@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hpdev.piko.R
 import com.hpdev.piko.data.UserEntity
 import com.hpdev.piko.databinding.FragmentHomeContactsBinding
 import com.hpdev.piko.ui.contacts.ContactsActivity
 import com.hpdev.piko.ui.detail.DetailUserActivity
 import com.hpdev.piko.ui.favorites.FavoritesActivity
+import com.hpdev.piko.utils.generateEmptyFavorites
+import com.hpdev.piko.utils.generateFavoriteUsers
+import com.hpdev.piko.utils.generateRecentUsers
 
 class HomeContactsFragment : Fragment(){
     private lateinit var homeContactsBinding: FragmentHomeContactsBinding
@@ -37,10 +38,10 @@ class HomeContactsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favoritesExist = false
+        val favoritesExist = true
 
         if (favoritesExist) {
-            favoriteUsers = generateDummyUsers()
+            favoriteUsers = generateFavoriteUsers()
 
             homeContactsBinding.tvFavViewAll.setOnClickListener {
                 val favoritesIntent = Intent(activity, FavoritesActivity::class.java)
@@ -85,7 +86,7 @@ class HomeContactsFragment : Fragment(){
         val isRecentExist = true
 
         if (isRecentExist) {
-            recentUsers = generateDummyUsers()
+            recentUsers = generateRecentUsers()
 
             recentAdapter = HomeRecentAdapter(recentUsers)
 
@@ -111,142 +112,5 @@ class HomeContactsFragment : Fragment(){
         }
     }
 
-    private fun generateEmptyFavorites() : MutableList<UserEntity> {
-        val listUser = mutableListOf<UserEntity>()
 
-        listUser.add(
-            UserEntity(
-                id = EMPTY_FAVORITES_ID,
-                fullName = "",
-                nickname = "",
-                mainCategory = "",
-                avatar = R.drawable.add_favorite,
-                mainContact = ""
-            )
-        )
-
-        return listUser
-    }
-
-    private fun generateDummyUsers2() : MutableList<UserEntity> {
-        val listUser = mutableListOf<UserEntity>()
-
-        listUser.add(
-            UserEntity(
-                id = 0,
-                fullName = "Hendry Prasetya",
-                nickname = "Hendry",
-                mainCategory = "College Friends",
-                avatar = R.drawable.man_1,
-                mainContact = "@hendryprasetyaa (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 1,
-                fullName = "Vian Aldi",
-                nickname = "Bian Barudi",
-                mainCategory = "HighSchool Friends",
-                avatar = R.drawable.man_2,
-                mainContact = "@vian_aldi (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 5,
-                fullName = "Katarina Devon",
-                nickname = "Karina",
-                mainCategory = "Friend",
-                avatar = R.drawable.woman_1,
-                mainContact = "@karina_devon (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 6,
-                fullName = "Jennie Ruby Jane",
-                nickname = "Jennie",
-                mainCategory = "Friend",
-                avatar = R.drawable.woman_2,
-                mainContact = "@jennierubyjane (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 7,
-                fullName = "John Mayer",
-                nickname = "John",
-                mainCategory = "Friend",
-                avatar = R.drawable.man_6,
-                mainContact = "0814-2325-2442 (WA)"
-            )
-        )
-
-        return listUser
-    }
-
-    private fun generateDummyUsers() : MutableList<UserEntity> {
-        val listUser = mutableListOf<UserEntity>()
-
-        listUser.add(
-            UserEntity(
-                id = 0,
-                fullName = "Hendry Prasetya",
-                nickname = "Hendry",
-                mainCategory = "College Friends",
-                avatar = R.drawable.man_1,
-                mainContact = "@hendryprasetyaa (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 1,
-                fullName = "Vian Aldi",
-                nickname = "Bian Barudi",
-                mainCategory = "HighSchool Friends",
-                avatar = R.drawable.man_2,
-                mainContact = "@vian_aldi (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 2,
-                fullName = "Mr. Pambudi Luhut",
-                nickname = "Pak Pam",
-                mainCategory = "Lecturer",
-                avatar = R.drawable.man_3,
-                mainContact = "@pambudi_lht (IG)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 3,
-                fullName = "Khairul Akmal",
-                nickname = "BAKWO CAK KHAIRUL",
-                mainCategory = "Family",
-                avatar = R.drawable.man_4,
-                mainContact = "0812-2345-2312 (WA)"
-            )
-        )
-
-        listUser.add(
-            UserEntity(
-                id = 4,
-                fullName = "Marechiyo Omaeda",
-                nickname = "Omaeda",
-                mainCategory = "Others",
-                avatar = R.drawable.man_5,
-                mainContact = "0814-2325-2312 (WA)"
-            )
-        )
-
-        return listUser
-    }
 }
