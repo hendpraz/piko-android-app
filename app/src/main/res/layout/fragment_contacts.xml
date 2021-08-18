@@ -5,11 +5,43 @@
     android:layout_height="match_parent"
     tools:context=".ui.contacts.ContactsFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Contacts Page\nNot yet developed"
-        android:textSize="20sp"
-        android:gravity="center" />
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="18dp"
+
+        >
+
+        <TextView
+            android:id="@+id/tvTopContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="Contacts"
+            />
+
+        <TextView
+            android:id="@+id/tvViewAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/dark_blue"
+            android:text="@string/view_all"
+            android:layout_marginEnd="22dp"
+            android:gravity="end"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTopContacts"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            />
+
+    </RelativeLayout>
 
 </FrameLayout>

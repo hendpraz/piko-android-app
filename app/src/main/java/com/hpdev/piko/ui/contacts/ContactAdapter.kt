@@ -1,4 +1,4 @@
-package com.hpdev.piko.ui.home
+package com.hpdev.piko.ui.contacts
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.hpdev.piko.R
 import com.hpdev.piko.data.UserEntity
 
-class HomeRecentAdapter(private val listUser: MutableList<UserEntity>) : RecyclerView.Adapter<HomeRecentAdapter.ListViewHolder>() {
+class ContactAdapter(private val listUser: MutableList<UserEntity>) : RecyclerView.Adapter<ContactAdapter.ListViewHolder>() {
     lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setData(myListUser: MutableList<UserEntity>) {

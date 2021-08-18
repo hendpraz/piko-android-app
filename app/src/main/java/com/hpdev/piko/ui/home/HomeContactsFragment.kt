@@ -13,8 +13,8 @@ import com.hpdev.piko.ui.contacts.ContactsActivity
 import com.hpdev.piko.ui.detail.DetailUserActivity
 import com.hpdev.piko.ui.favorites.FavoritesActivity
 import com.hpdev.piko.utils.generateEmptyFavorites
-import com.hpdev.piko.utils.generateFavoriteUsers
-import com.hpdev.piko.utils.generateRecentUsers
+import com.hpdev.piko.utils.getTopFavoriteUsers
+import com.hpdev.piko.utils.getRecentUsers
 
 class HomeContactsFragment : Fragment(){
     private lateinit var homeContactsBinding: FragmentHomeContactsBinding
@@ -41,7 +41,7 @@ class HomeContactsFragment : Fragment(){
         val favoritesExist = true
 
         if (favoritesExist) {
-            favoriteUsers = generateFavoriteUsers()
+            favoriteUsers = getTopFavoriteUsers()
 
             homeContactsBinding.tvFavViewAll.setOnClickListener {
                 val favoritesIntent = Intent(activity, FavoritesActivity::class.java)
@@ -86,7 +86,7 @@ class HomeContactsFragment : Fragment(){
         val isRecentExist = true
 
         if (isRecentExist) {
-            recentUsers = generateRecentUsers()
+            recentUsers = getRecentUsers()
 
             recentAdapter = HomeRecentAdapter(recentUsers)
 

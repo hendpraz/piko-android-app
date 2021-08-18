@@ -27,27 +27,54 @@ fun getUserById(id: Int) : UserEntity {
     return listUser[id]
 }
 
-fun generateFavoriteUsers() : MutableList<UserEntity> {
-    val listUser = generateDummyUsers()
-    val recentUser = mutableListOf<UserEntity>()
-
-    recentUser.add(listUser[0])
-    recentUser.add(listUser[1])
-    recentUser.add(listUser[4])
-    recentUser.add(listUser[5])
-    recentUser.add(listUser[6])
-
-    return recentUser
+fun getAllUsers() : MutableList<UserEntity> {
+    return generateDummyUsers()
 }
 
-fun generateRecentUsers() : MutableList<UserEntity> {
+fun getTopRecentUsers() : MutableList<UserEntity> {
+    val listUser = generateDummyUsers()
+    val users = mutableListOf<UserEntity>()
+
+    users.add(listUser[0])
+    users.add(listUser[1])
+    users.add(listUser[2])
+    users.add(listUser[3])
+    users.add(listUser[4])
+
+    return users
+}
+
+fun getAllFavoriteUsers() : MutableList<UserEntity> {
+    val listUser = generateDummyUsers()
+    val users = mutableListOf<UserEntity>()
+
+    users.add(listUser[0])
+    users.add(listUser[4])
+    users.add(listUser[5])
+    users.add(listUser[6])
+
+    return users
+}
+
+fun getTopFavoriteUsers() : MutableList<UserEntity> {
+    val listUser = generateDummyUsers()
+    val users = mutableListOf<UserEntity>()
+
+    users.add(listUser[0])
+    users.add(listUser[1])
+    users.add(listUser[4])
+    users.add(listUser[5])
+
+    return users
+}
+
+fun getRecentUsers() : MutableList<UserEntity> {
     val listUser = generateDummyUsers()
     val recentUser = mutableListOf<UserEntity>()
 
     recentUser.add(listUser[0])
     recentUser.add(listUser[1])
     recentUser.add(listUser[2])
-    recentUser.add(listUser[3])
 
     return recentUser
 }

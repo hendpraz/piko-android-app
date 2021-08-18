@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
 import com.hpdev.piko.R
 import com.hpdev.piko.databinding.FragmentHomeBinding
-import com.hpdev.piko.ui.contacts.ContactsActivity
 import com.hpdev.piko.ui.search.SearchActivity
 import com.hpdev.piko.ui.settings.SettingsActivity
 
@@ -21,7 +18,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         fragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return fragmentHomeBinding.root
