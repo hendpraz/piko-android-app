@@ -216,20 +216,21 @@
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_favorite_border_24_white"
-            android:backgroundTint="@color/dark_blue"
-            app:tint="@color/white"
-            android:contentDescription="@string/cd_favorite_fav"
-
-            android:layout_below="@id/cvContacts"
-            />
     </RelativeLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="66dp"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/ic_baseline_favorite_border_24_white"
+        android:backgroundTint="@color/dark_blue"
+        app:tint="@color/white"
+        android:contentDescription="@string/cd_favorite_fav"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
