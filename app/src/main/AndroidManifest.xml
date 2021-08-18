@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hpdev.piko">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Piko">
-        <activity android:name=".ui.add_contact.AddContactActivity"></activity>
-        <activity android:name=".ui.contacts.ContactsActivity" />
-        <activity android:name=".ui.favorites.FavoritesActivity" />
-        <activity android:name=".ui.settings.SettingsActivity" />
-        <activity android:name=".ui.detail.DetailUserActivity" />
-        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name="com.hpdev.piko.add_contact.AddContactActivity"></activity>
+        <activity android:name="com.hpdev.piko.contacts.ContactsActivity" />
+        <activity android:name="com.hpdev.piko.favorites.FavoritesActivity" />
+        <activity android:name="com.hpdev.piko.settings.SettingsActivity" />
+        <activity android:name="com.hpdev.piko.detail.DetailUserActivity" />
+        <activity android:name="com.hpdev.piko.search.SearchActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

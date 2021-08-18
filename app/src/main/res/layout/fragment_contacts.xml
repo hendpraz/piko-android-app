@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contacts.ContactsFragment">
+    android:layout_marginStart="22dp"
+    android:layout_marginTop="18dp"
+    android:paddingBottom="56dp"
+    >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tvTopContacts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="18dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="@string/contacts_fragment_title"
+        />
 
-        >
+    <TextView
+        android:id="@+id/tvViewAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/dark_blue"
+        android:text="@string/view_all"
+        android:layout_marginEnd="22dp"
+        android:gravity="end"
+        />
 
-        <TextView
-            android:id="@+id/tvTopContacts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:text="Contacts"
-            />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTopContacts"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        />
 
-        <TextView
-            android:id="@+id/tvViewAll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/dark_blue"
-            android:text="@string/view_all"
-            android:layout_marginEnd="22dp"
-            android:gravity="end"
-            />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        android:layout_below="@id/tvTopContacts" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvContacts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvTopContacts"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            />
+    <include
+        android:id="@+id/view_error"
+        layout="@layout/view_error"
+        android:visibility="gone" />
 
-    </RelativeLayout>
+    <include
+        android:id="@+id/view_empty"
+        layout="@layout/view_empty"
+        android:visibility="gone" />
 
-</FrameLayout>
+</RelativeLayout>

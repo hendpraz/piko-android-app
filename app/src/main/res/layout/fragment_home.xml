@@ -1,90 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:layout_marginStart="22dp"
+    android:layout_marginTop="18dp"
+    >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/piko_title"
+        android:textSize="18sp"
+        android:maxLines="1"
+        android:layout_alignParentStart="true"
+        android:fontFamily="@font/raleway_semi_bold"
+        android:layout_marginEnd="22dp"
+        />
+
+    <ImageView
+        android:id="@+id/imgSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_baseline_settings_24"
+        android:layout_marginEnd="22dp"
+        android:contentDescription="@string/setting_button_image" />
+
+    <TextView
+        android:id="@+id/tvHomeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_home_title"
+        android:textSize="36sp"
+        android:maxLines="2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tvAppName"
+        android:textColor="@color/dark_blue"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="22dp"
+        />
+
+    <EditText
+        android:id="@+id/contactEt"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/tvHomeTitle"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/ic_baseline_person_search_24"
+        android:drawablePadding="12dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/raleway_semi_bold"
+        android:hint="@string/search_saved_contacts"
+        android:inputType="none"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints="" />
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="18dp"
+        android:paddingBottom="56dp"
+        android:layout_below="@id/contactEt"
         >
 
-        <TextView
-            android:id="@+id/tvAppName"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="People I Know - On The List"
-            android:textSize="18sp"
-            android:maxLines="1"
-            android:layout_alignParentStart="true"
-            android:fontFamily="@font/raleway_semi_bold"
-            android:layout_marginEnd="22dp"
-            />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgSetting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_baseline_settings_24"
-            android:layout_marginEnd="22dp"
-            />
-
-        <TextView
-            android:id="@+id/tvHomeTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_home_title"
-            android:textSize="36sp"
-            android:maxLines="2"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/tvAppName"
-            android:textColor="@color/dark_blue"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="22dp"
-            />
-
-        <EditText
-            android:id="@+id/contactEt"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/tvHomeTitle"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:drawableStart="@drawable/ic_baseline_person_search_24"
-            android:drawablePadding="12dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/raleway_semi_bold"
-            android:hint="Search saved contacts..."
-            android:inputType="none"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="10dp"
-            />
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="56dp"
-            android:layout_below="@id/contactEt"
-            >
-
-            <RelativeLayout
+            <FrameLayout
+                android:id="@+id/frameContainerHome"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <FrameLayout
-                    android:id="@+id/frameContainerHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </RelativeLayout>
-        </androidx.core.widget.NestedScrollView>
-    </RelativeLayout>
-</FrameLayout>
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
