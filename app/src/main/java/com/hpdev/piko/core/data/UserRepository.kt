@@ -1,11 +1,12 @@
 package com.hpdev.piko.core.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.hpdev.piko.core.data.source.local.LocalDataSource
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.data.source.remote.RemoteDataSource
 import com.hpdev.piko.core.data.source.remote.network.ApiResponse
 import com.hpdev.piko.core.data.source.remote.response.UserResponse
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.utils.AppExecutors
 import com.hpdev.piko.core.utils.DataMapper
 
@@ -29,13 +30,15 @@ class UserRepository  private constructor(
             }
     }
 
-    fun getAllUsers(): LiveData<Resource<List<UserEntity>>> =
-        object : NetworkBoundResource<List<UserEntity>, List<UserResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<UserEntity>> {
-                return localDataSource.getAllUser()
+    fun getAllUsers(): LiveData<Resource<List<User>>> =
+        object : NetworkBoundResource<List<User>, List<UserResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<User>> {
+                return Transformations.map(localDataSource.getAllUsers()) {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<UserEntity>?): Boolean =
+            override fun shouldFetch(data: List<User>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<UserResponse>>> =
@@ -47,13 +50,15 @@ class UserRepository  private constructor(
             }
         }.asLiveData()
 
-    fun getRecentUsers(): LiveData<Resource<List<UserEntity>>> =
-        object : NetworkBoundResource<List<UserEntity>, List<UserResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<UserEntity>> {
-                return localDataSource.getRecentUsers()
+    fun getRecentUsers(): LiveData<Resource<List<User>>> =
+        object : NetworkBoundResource<List<User>, List<UserResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<User>> {
+                return Transformations.map(localDataSource.getRecentUsers()) {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<UserEntity>?): Boolean =
+            override fun shouldFetch(data: List<User>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<UserResponse>>> =
@@ -65,13 +70,15 @@ class UserRepository  private constructor(
             }
         }.asLiveData()
 
-    fun getTopUsers(): LiveData<Resource<List<UserEntity>>> =
-        object : NetworkBoundResource<List<UserEntity>, List<UserResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<UserEntity>> {
-                return localDataSource.getTopUsers()
+    fun getTopUsers(): LiveData<Resource<List<User>>> =
+        object : NetworkBoundResource<List<User>, List<UserResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<User>> {
+                return Transformations.map(localDataSource.getTopUsers()) {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<UserEntity>?): Boolean =
+            override fun shouldFetch(data: List<User>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<UserResponse>>> =
@@ -83,15 +90,20 @@ class UserRepository  private constructor(
             }
         }.asLiveData()
 
-    fun getTopFavoriteUsers(): LiveData<List<UserEntity>> {
-        return localDataSource.getTopFavoriteUsers()
+    fun getTopFavoriteUsers(): LiveData<List<User>> {
+        return Transformations.map(localDataSource.getTopFavoriteUsers()) {
+            DataMapper.mapEntitiesToDomain(it)
+        }
     }
 
-    fun getFavoriteUsers(): LiveData<List<UserEntity>> {
-        return localDataSource.getTopFavoriteUsers()
+    fun getFavoriteUsers(): LiveData<List<User>> {
+        return Transformations.map(localDataSource.getFavoriteUsers()) {
+            DataMapper.mapEntitiesToDomain(it)
+        }
     }
 
-    fun setFavoriteUser(User: UserEntity, state: Boolean) {
-        appExecutors.diskIO().execute { localDataSource.setFavoriteUser(User, state) }
+    fun setFavoriteUser(user: User, state: Boolean) {
+        val userEntity = DataMapper.mapDomainToEntity(user)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteUser(userEntity, state) }
     }
 }

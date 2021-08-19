@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hpdev.piko.R
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.ActivityFavoritesBinding
@@ -25,7 +24,7 @@ class FavoritesActivity : AppCompatActivity() {
         val contactsAdapter = ContactsListAdapter()
 
         contactsAdapter.onItemClickCallback = (object : ContactsListAdapter.OnItemClickCallback {
-            override fun onItemClick(user: UserEntity) {
+            override fun onItemClick(user: User) {
                 val detailIntent = Intent(this@FavoritesActivity, DetailUserActivity::class.java)
                 detailIntent.putExtra(DetailUserActivity.EXTRA_USER, user)
                 startActivity(detailIntent)

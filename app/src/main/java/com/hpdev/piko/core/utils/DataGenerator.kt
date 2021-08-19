@@ -1,20 +1,20 @@
 package com.hpdev.piko.core.utils
 
-import com.hpdev.piko.R
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.home.HomeContactsFragment
 
-fun generateEmptyFavorites() : MutableList<UserEntity> {
-    val listUser = mutableListOf<UserEntity>()
+fun generateEmptyFavorites() : MutableList<User> {
+    val listUser = mutableListOf<User>()
 
     listUser.add(
-        UserEntity(
+        User(
             userId = HomeContactsFragment.EMPTY_FAVORITES_ID,
             fullName = "",
             nickname = "",
             mainCategory = "",
             avatar = "add",
-            mainContact = ""
+            mainContact = "",
+            isFavorite = false
         )
     )
 

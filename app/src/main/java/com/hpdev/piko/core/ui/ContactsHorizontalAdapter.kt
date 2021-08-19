@@ -5,17 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hpdev.piko.R
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 
 class ContactsHorizontalAdapter : RecyclerView.Adapter<ContactsHorizontalAdapter.ListViewHolder>() {
-    private val listUser = ArrayList<UserEntity>()
+    private val listUser = ArrayList<User>()
     lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setData(myListUser: List<UserEntity>?) {
+    fun setData(myListUser: List<User>?) {
         if (myListUser == null) return
         this.listUser.clear()
         this.listUser.addAll(myListUser)
@@ -44,15 +45,7 @@ class ContactsHorizontalAdapter : RecyclerView.Adapter<ContactsHorizontalAdapter
         }
         holder.tvHorizontal.text = textToDisplay
 
-        holder.tvHorizontal.setOnClickListener {
-            onItemClickCallback.onItemClick(listUser[holder.adapterPosition])
-        }
-
-        holder.imageView.setOnClickListener {
-            onItemClickCallback.onItemClick(listUser[holder.adapterPosition])
-        }
-
-        holder.overlayView.setOnClickListener {
+        holder.cardView.setOnClickListener {
             onItemClickCallback.onItemClick(listUser[holder.adapterPosition])
         }
     }
@@ -62,12 +55,12 @@ class ContactsHorizontalAdapter : RecyclerView.Adapter<ContactsHorizontalAdapter
     }
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardView : CardView = itemView.findViewById(R.id.cvFavorites)
         var imageView : ImageView = itemView.findViewById(R.id.imgAvatar)
         var tvHorizontal : TextView = itemView.findViewById(R.id.tvHorizontal)
-        val overlayView : View = itemView.findViewById(R.id.overlayView)
     }
 
     interface OnItemClickCallback {
-        fun onItemClick(user: UserEntity)
+        fun onItemClick(user: User)
     }
 }

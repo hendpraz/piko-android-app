@@ -36,7 +36,7 @@ class JsonHelper(private val context: Context) {
             val mainContact = user.getString("email")
 
             val courseResponse = UserResponse(
-                id = id,
+                userId = id,
                 fullName = fullName,
                 nickname = nickname,
                 mainCategory = mainCategory,

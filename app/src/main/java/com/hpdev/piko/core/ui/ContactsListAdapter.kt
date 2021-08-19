@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hpdev.piko.R
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 
 class ContactsListAdapter : RecyclerView.Adapter<ContactsListAdapter.ListViewHolder>() {
-    private val listUser = ArrayList<UserEntity>()
+    private val listUser = ArrayList<User>()
     lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setData(myListUser: List<UserEntity>?) {
+    fun setData(myListUser: List<User>?) {
         if (myListUser == null) return
         this.listUser.clear()
         this.listUser.addAll(myListUser)
@@ -69,6 +69,6 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactsListAdapter.ListViewHol
     }
 
     interface OnItemClickCallback {
-        fun onItemClick(user: UserEntity)
+        fun onItemClick(user: User)
     }
 }

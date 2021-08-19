@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
 import com.hpdev.piko.core.data.Resource
 import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.FragmentContactsBinding
@@ -37,7 +38,7 @@ class ContactsFragment : Fragment() {
             topUsersAdapter = ContactsListAdapter()
 
             topUsersAdapter.onItemClickCallback = (object : ContactsListAdapter.OnItemClickCallback {
-                override fun onItemClick(user: UserEntity) {
+                override fun onItemClick(user: User) {
                     val detailIntent = Intent(activity, DetailUserActivity::class.java)
                     detailIntent.putExtra(DetailUserActivity.EXTRA_USER, user)
                     startActivity(detailIntent)

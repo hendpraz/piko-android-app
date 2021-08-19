@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hpdev.piko.R
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.ActivityDetailUserBinding
 
@@ -29,18 +29,18 @@ class DetailUserActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         detailUserViewModel = ViewModelProvider(this, factory)[DetailUserViewModel::class.java]
 
-        val userEntity = intent.getParcelableExtra<UserEntity>(EXTRA_USER)
+        val user = intent.getParcelableExtra<User>(EXTRA_USER)
 
-        if (userEntity != null) {
-            showDetailUser(userEntity)
+        if (user != null) {
+            showDetailUser(user)
         }
     }
 
-    private fun showDetailUser(userEntity: UserEntity) {
+    private fun showDetailUser(user: User) {
         with(binding) {
             imgShare.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
-                val shareBody = userEntity.fullName + " " + userEntity.mainContact
+                val shareBody = user.fullName + " " + user.mainContact
                 intent.type = "text/plain"
                 intent.putExtra(
                     Intent.EXTRA_SUBJECT,
@@ -51,23 +51,23 @@ class DetailUserActivity : AppCompatActivity() {
             }
 
             Glide.with(this@DetailUserActivity)
-                .load(userEntity.avatar)
+                .load(user.avatar)
                 .apply(
                     RequestOptions.placeholderOf(R.drawable.ic_baseline_refresh_24)
                         .error(R.drawable.ic_baseline_error_24))
                 .placeholder(R.drawable.add_contact)
                 .into(imgAvatar)
 
-            tvFullName.text = userEntity.fullName
-            tvNickname.text = userEntity.nickname
-            tvCategory.text = userEntity.mainCategory
-            tvMainContact.text = userEntity.mainContact
+            tvFullName.text = user.fullName
+            tvNickname.text = user.nickname
+            tvCategory.text = user.mainCategory
+            tvMainContact.text = user.mainContact
 
-            var statusFavorite = userEntity.isFavorite
+            var statusFavorite = user.isFavorite
             setStatusFavorite(statusFavorite)
             binding.fab.setOnClickListener {
                 statusFavorite = !statusFavorite
-                detailUserViewModel.setFavoriteUser(userEntity, statusFavorite)
+                detailUserViewModel.setFavoriteUser(user, statusFavorite)
                 setStatusFavorite(statusFavorite)
             }
         }

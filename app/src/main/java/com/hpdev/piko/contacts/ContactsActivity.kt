@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
 import com.hpdev.piko.core.data.Resource
 import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.ActivityContactsBinding
@@ -28,7 +29,7 @@ class ContactsActivity : AppCompatActivity() {
 
         allContacts = ContactsListAdapter()
         allContacts.onItemClickCallback = (object : ContactsListAdapter.OnItemClickCallback {
-            override fun onItemClick(user: UserEntity) {
+            override fun onItemClick(user: User) {
                 val detailIntent = Intent(this@ContactsActivity, DetailUserActivity::class.java)
                 detailIntent.putExtra(DetailUserActivity.EXTRA_USER, user)
                 startActivity(detailIntent)

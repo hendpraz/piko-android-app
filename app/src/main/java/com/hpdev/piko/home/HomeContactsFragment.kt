@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.databinding.FragmentHomeContactsBinding
 import com.hpdev.piko.contacts.ContactsActivity
 import com.hpdev.piko.core.data.Resource
+import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsHorizontalAdapter
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
@@ -44,7 +44,7 @@ class HomeContactsFragment : Fragment(){
         if (activity != null) {
             recentAdapter = ContactsListAdapter()
             recentAdapter.onItemClickCallback = (object : ContactsListAdapter.OnItemClickCallback {
-                override fun onItemClick(user: UserEntity) {
+                override fun onItemClick(user: User) {
                     val detailIntent = Intent(activity, DetailUserActivity::class.java)
                     detailIntent.putExtra(DetailUserActivity.EXTRA_USER, user)
                     startActivity(detailIntent)
@@ -63,7 +63,7 @@ class HomeContactsFragment : Fragment(){
 
                         favoritesAdapter.setData(favoriteUsers)
                         favoritesAdapter.onItemClickCallback = (object : ContactsHorizontalAdapter.OnItemClickCallback {
-                            override fun onItemClick(user: UserEntity) {
+                            override fun onItemClick(user: User) {
                                 val detailIntent = Intent(activity, DetailUserActivity::class.java)
                                 detailIntent.putExtra(DetailUserActivity.EXTRA_USER, user)
                                 startActivity(detailIntent)
@@ -80,7 +80,7 @@ class HomeContactsFragment : Fragment(){
 
                         favoritesAdapter.setData(favoriteUsers)
                         favoritesAdapter.onItemClickCallback = (object : ContactsHorizontalAdapter.OnItemClickCallback {
-                            override fun onItemClick(user: UserEntity) {
+                            override fun onItemClick(user: User) {
                                 val contactsIntent = Intent(activity, ContactsActivity::class.java)
 
                                 // start activity, to contacts list page
