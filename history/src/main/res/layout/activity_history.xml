@@ -4,6 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_baseline_keyboard_backspace_24"
+        android:layout_marginEnd="22dp"
+        android:contentDescription="@string/contact_details_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="18dp"
+        />
+
+    <TextView
+        android:id="@+id/tvAllContacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_history"
+        android:textSize="18sp"
+        android:layout_alignParentStart="true"
+        android:fontFamily="@font/raleway_semi_bold"
+        android:layout_marginEnd="22dp"
+        android:gravity="center"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="18dp"
+        />
+
     <TextView
         android:id="@+id/tv_history"
         android:layout_width="wrap_content"

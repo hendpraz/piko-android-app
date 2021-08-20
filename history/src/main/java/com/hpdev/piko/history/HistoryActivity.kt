@@ -19,7 +19,9 @@ class HistoryActivity : AppCompatActivity() {
 
         loadKoinModules(historyModule)
 
-        supportActionBar?.title = "PIKO Contact History"
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
 
         getUsersData()
     }

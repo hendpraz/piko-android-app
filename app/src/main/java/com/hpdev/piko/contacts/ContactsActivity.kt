@@ -26,6 +26,10 @@ class ContactsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
+
         allContacts = ContactsListAdapter()
         allContacts.onItemClickCallback = (object : ContactsListAdapter.OnItemClickCallback {
             override fun onItemClick(user: User) {

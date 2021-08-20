@@ -46,6 +46,10 @@ class DetailUserActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(intent, "Share to.."))
             }
 
+            imgBack.setOnClickListener {
+                finish()
+            }
+
             Glide.with(this@DetailUserActivity)
                 .load(user.avatar)
                 .apply(
