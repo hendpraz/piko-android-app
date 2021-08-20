@@ -1,6 +1,7 @@
 package com.hpdev.piko.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,7 +17,6 @@ import com.hpdev.piko.core.ui.ContactsHorizontalAdapter
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.utils.generateEmptyFavorites
 import com.hpdev.piko.detail.DetailUserActivity
-import com.hpdev.piko.favorites.FavoritesActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeContactsFragment : Fragment(){
@@ -64,8 +64,8 @@ class HomeContactsFragment : Fragment(){
                             }
                         })
                         binding.tvFavViewAll.setOnClickListener {
-                            val favoritesIntent = Intent(activity, FavoritesActivity::class.java)
-                            startActivity(favoritesIntent)
+                            val uri = Uri.parse("piko://favorite")
+                            startActivity(Intent(Intent.ACTION_VIEW, uri))
                         }
                     } else {
                         val favoriteUsers = generateEmptyFavorites()

@@ -4,7 +4,6 @@ import com.hpdev.piko.contacts.ContactsViewModel
 import com.hpdev.piko.core.domain.usecase.UserInteractor
 import com.hpdev.piko.core.domain.usecase.UserUseCase
 import com.hpdev.piko.detail.DetailUserViewModel
-import com.hpdev.piko.favorites.FavoritesViewModel
 import com.hpdev.piko.home.HomeViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -16,6 +15,5 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { ContactsViewModel(get()) }
-    viewModel { FavoritesViewModel(get()) }
     viewModel { DetailUserViewModel(get()) }
 }

@@ -1,4 +1,4 @@
-package com.hpdev.piko.favorites
+package com.hpdev.piko.favorite
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,9 +7,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
-import com.hpdev.piko.databinding.ActivityFavoritesBinding
 import com.hpdev.piko.detail.DetailUserActivity
+import com.hpdev.piko.favorite.databinding.ActivityFavoritesBinding
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoritesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoritesBinding
@@ -19,6 +20,12 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoritesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadKoinModules(favoritesModule)
+
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
 
         val contactsAdapter = ContactsListAdapter()
 
@@ -32,7 +39,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         favoritesViewModel.favoriteUsers.observe(this, {
             contactsAdapter.setData(it)
-            binding.viewEmpty.root.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
+            binding.viewEmpty.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
         })
 
         with(binding.rvContacts) {
