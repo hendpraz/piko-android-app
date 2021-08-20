@@ -38,5 +38,6 @@
     <string name="nyd_add_contact_page">Add Contact Page\nNot yet developed</string>
     <string name="my_favorites">My Favorites</string>
     <string name="cd_favorite_fav">Favorite FAV</string>
+    <string name="title_history">History</string>
 
 </resources>
