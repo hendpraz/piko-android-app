@@ -61,6 +61,8 @@ class HomeContactsFragment : Fragment(){
                     if (it.isNotEmpty()) {
                         val favoriteUsers = it
 
+                        binding.tvFavViewAll.visibility = View.VISIBLE
+
                         favoritesAdapter.setData(favoriteUsers)
                         favoritesAdapter.onItemClickCallback = (object : ContactsHorizontalAdapter.OnItemClickCallback {
                             override fun onItemClick(user: User) {
