@@ -8,6 +8,8 @@ import com.hpdev.piko.core.data.source.remote.RemoteDataSource
 import com.hpdev.piko.core.data.source.remote.network.ApiService
 import com.hpdev.piko.core.domain.repository.IUserRepository
 import com.hpdev.piko.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -19,10 +21,14 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<UserDatabase>().userDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("hpdev".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             UserDatabase::class.java, "User.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
