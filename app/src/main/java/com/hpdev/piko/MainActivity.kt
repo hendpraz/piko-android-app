@@ -16,6 +16,13 @@ import com.hpdev.piko.profile.ProfileFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
+    override fun onStart() {
+        super.onStart()
+
+        // always select home nav onStart
+        bottomNavigationView.selectedItemId = R.id.mHome
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,21 +32,30 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(2).isEnabled = false
 
+        // set default fragment
         supportFragmentManager.beginTransaction().replace(R.id.frameContainer, HomeFragment()).commit()
+        bottomNavigationView.selectedItemId = R.id.mHome
 
+        // bottom nav menu onclick
         bottomNavigationView.setOnNavigationItemSelectedListener {
-            val temp: Fragment = when (it.itemId) {
-                R.id.mHome -> HomeFragment()
-                R.id.mContacts -> ContactsFragment()
-                R.id.mHistory -> HistoryFragment()
-                R.id.mProfile -> ProfileFragment()
-                else -> HomeFragment()
-            }
+            if (it.itemId == R.id.mHistory) {
+                val uri = Uri.parse("piko://history")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
+            } else {
+                val temp: Fragment = when (it.itemId) {
+                    R.id.mHome -> HomeFragment()
+                    R.id.mContacts -> ContactsFragment()
+                    R.id.mHistory -> HistoryFragment()
+                    R.id.mProfile -> ProfileFragment()
+                    else -> HomeFragment()
+                }
 
-            supportFragmentManager.beginTransaction().replace(R.id.frameContainer, temp).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.frameContainer, temp).commit()
+            }
             true
         }
 
+        // set fab onclick
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             val addContactIntent = Intent(this@MainActivity, AddContactActivity::class.java)
