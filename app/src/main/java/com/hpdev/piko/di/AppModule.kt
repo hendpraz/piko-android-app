@@ -7,8 +7,6 @@ import dagger.Module
 
 @Module
 abstract class AppModule {
-
     @Binds
-    abstract fun provideUserUseCase(tourismInteractor: UserInteractor): UserUseCase
-
+    abstract fun provideUserUseCase(userInteractor: UserInteractor): UserUseCase
 }

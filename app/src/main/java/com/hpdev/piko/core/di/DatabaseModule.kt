@@ -10,14 +10,13 @@ import javax.inject.Singleton
 
 @Module
 class DatabaseModule {
-
     @Singleton
     @Provides
     fun provideDatabase(context: Context): UserDatabase = Room.databaseBuilder(
         context,
-        UserDatabase::class.java, "Tourism.db"
+        UserDatabase::class.java, "User.db"
     ).fallbackToDestructiveMigration().build()
 
     @Provides
-    fun provideTourismDao(database: UserDatabase): UserDao = database.userDao()
+    fun provideUserDao(database: UserDatabase): UserDao = database.userDao()
 }
