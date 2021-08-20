@@ -1,9 +1,9 @@
 package com.hpdev.piko.contacts
 
 import androidx.lifecycle.ViewModel
-import com.hpdev.piko.core.data.UserRepository
+import com.hpdev.piko.core.domain.usecase.UserUseCase
 
-class ContactsViewModel(userRepository: UserRepository) : ViewModel() {
-    val allUsers = userRepository.getAllUsers()
-    val topUsers = userRepository.getTopUsers()
+class ContactsViewModel(userUseCase: UserUseCase) : ViewModel() {
+    val allUsers = userUseCase.getAllUsers()
+    val topUsers = userUseCase.getTopUsers()
 }

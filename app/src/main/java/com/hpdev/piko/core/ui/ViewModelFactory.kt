@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hpdev.piko.contacts.ContactsViewModel
-import com.hpdev.piko.core.data.UserRepository
 import com.hpdev.piko.core.di.Injection
+import com.hpdev.piko.core.domain.usecase.UserUseCase
 import com.hpdev.piko.detail.DetailUserViewModel
 import com.hpdev.piko.favorites.FavoritesViewModel
 import com.hpdev.piko.home.HomeViewModel
 
-class ViewModelFactory private constructor(private val userRepository: UserRepository) :
+class ViewModelFactory private constructor(private val userUseCase: UserUseCase) :
     ViewModelProvider.NewInstanceFactory() {
 
     companion object {
@@ -22,7 +22,7 @@ class ViewModelFactory private constructor(private val userRepository: UserRepos
                 ?: synchronized(this) {
                     instance
                         ?: ViewModelFactory(
-                            Injection.provideRepository(
+                            Injection.provideUserUseCase(
                                 context
                             )
                         )
@@ -33,16 +33,16 @@ class ViewModelFactory private constructor(private val userRepository: UserRepos
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(userRepository) as T
+                HomeViewModel(userUseCase) as T
             }
             modelClass.isAssignableFrom(FavoritesViewModel::class.java) -> {
-                FavoritesViewModel(userRepository) as T
+                FavoritesViewModel(userUseCase) as T
             }
             modelClass.isAssignableFrom(DetailUserViewModel::class.java) -> {
-                DetailUserViewModel(userRepository) as T
+                DetailUserViewModel(userUseCase) as T
             }
             modelClass.isAssignableFrom(ContactsViewModel::class.java) -> {
-                ContactsViewModel(userRepository) as T
+                ContactsViewModel(userUseCase) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
