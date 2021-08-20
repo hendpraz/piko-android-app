@@ -4,17 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hpdev.piko.R
 import com.hpdev.piko.core.domain.model.User
-import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.ActivityDetailUserBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
-    private lateinit var detailUserViewModel: DetailUserViewModel
+    private val detailUserViewModel: DetailUserViewModel by viewModel()
 
     companion object {
         const val EXTRA_USER = "extra_user"
@@ -25,9 +24,6 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        val factory = ViewModelFactory.getInstance(this)
-        detailUserViewModel = ViewModelProvider(this, factory)[DetailUserViewModel::class.java]
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER)
 

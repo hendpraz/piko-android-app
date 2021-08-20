@@ -50,9 +50,7 @@ class ContactsHorizontalAdapter : RecyclerView.Adapter<ContactsHorizontalAdapter
         }
     }
 
-    override fun getItemCount(): Int {
-        return listUser.size
-    }
+    override fun getItemCount() = listUser.size
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView : CardView = itemView.findViewById(R.id.cvFavorites)

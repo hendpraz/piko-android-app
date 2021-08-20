@@ -5,17 +5,7 @@ import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.data.source.local.room.UserDao
 import kotlinx.coroutines.flow.Flow
 
-class LocalDataSource private constructor(private val userDao: UserDao) {
-
-    companion object {
-        private var instance: LocalDataSource? = null
-
-        fun getInstance(userDao: UserDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(userDao)
-            }
-    }
-
+class LocalDataSource(private val userDao: UserDao) {
     fun getAllUsers(): Flow<List<UserEntity>> = userDao.getAllUsers()
 
     fun getRecentUsers(): Flow<List<UserEntity>> = userDao.getRecentUsers()

@@ -4,21 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
 import com.hpdev.piko.core.data.Resource
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
-import com.hpdev.piko.core.ui.ViewModelFactory
+import org.koin.android.viewmodel.ext.android.viewModel
 import com.hpdev.piko.databinding.ActivityContactsBinding
 import com.hpdev.piko.detail.DetailUserActivity
 
 class ContactsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContactsBinding
     private lateinit var allContacts: ContactsListAdapter
-    private lateinit var contactsViewModel: ContactsViewModel
+
+    private val contactsViewModel: ContactsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +34,6 @@ class ContactsActivity : AppCompatActivity() {
                 startActivity(detailIntent)
             }
         })
-
-        val factory = ViewModelFactory.getInstance(this)
-        contactsViewModel = ViewModelProvider(this, factory)[ContactsViewModel::class.java]
 
         contactsViewModel.allUsers.observe(this, {
             if (it != null) {

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
 import com.hpdev.piko.databinding.FragmentHomeContactsBinding
@@ -15,17 +14,17 @@ import com.hpdev.piko.core.data.Resource
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsHorizontalAdapter
 import com.hpdev.piko.core.ui.ContactsListAdapter
-import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.core.utils.generateEmptyFavorites
 import com.hpdev.piko.detail.DetailUserActivity
 import com.hpdev.piko.favorites.FavoritesActivity
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeContactsFragment : Fragment(){
     private lateinit var binding: FragmentHomeContactsBinding
     private lateinit var favoritesAdapter: ContactsHorizontalAdapter
     private lateinit var recentAdapter: ContactsListAdapter
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
 
     companion object {
         const val EMPTY_FAVORITES_ID = -999
@@ -52,9 +51,6 @@ class HomeContactsFragment : Fragment(){
             })
 
             favoritesAdapter = ContactsHorizontalAdapter()
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.topFavorites.observe(viewLifecycleOwner, {
                 if (it != null) {

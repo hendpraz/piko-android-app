@@ -6,21 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hpdev.piko.R
 import com.hpdev.piko.core.data.Resource
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
-import com.hpdev.piko.core.ui.ViewModelFactory
+import org.koin.android.viewmodel.ext.android.viewModel
 import com.hpdev.piko.databinding.FragmentContactsBinding
 import com.hpdev.piko.detail.DetailUserActivity
 
 class ContactsFragment : Fragment() {
     private lateinit var binding: FragmentContactsBinding
     private lateinit var topUsersAdapter: ContactsListAdapter
-    private lateinit var contactsViewModel: ContactsViewModel
+    private val contactsViewModel: ContactsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +49,6 @@ class ContactsFragment : Fragment() {
                 // start activity, to contacts activity
                 startActivity(contactsIntent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireContext())
-            contactsViewModel = ViewModelProvider(this, factory)[ContactsViewModel::class.java]
 
             contactsViewModel.topUsers.observe(viewLifecycleOwner, {
                 if (it != null) {
