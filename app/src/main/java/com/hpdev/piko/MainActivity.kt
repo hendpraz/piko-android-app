@@ -38,20 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         // bottom nav menu onclick
         bottomNavigationView.setOnNavigationItemSelectedListener {
-            if (it.itemId == R.id.mHistory) {
-                val uri = Uri.parse("piko://history")
-                startActivity(Intent(Intent.ACTION_VIEW, uri))
-            } else {
-                val temp: Fragment = when (it.itemId) {
-                    R.id.mHome -> HomeFragment()
-                    R.id.mContacts -> ContactsFragment()
-                    R.id.mHistory -> HistoryFragment()
-                    R.id.mProfile -> ProfileFragment()
-                    else -> HomeFragment()
-                }
-
-                supportFragmentManager.beginTransaction().replace(R.id.frameContainer, temp).commit()
+            val temp: Fragment = when (it.itemId) {
+                R.id.mHome -> HomeFragment()
+                R.id.mContacts -> ContactsFragment()
+                R.id.mHistory -> HistoryFragment()
+                R.id.mProfile -> ProfileFragment()
+                else -> HomeFragment()
             }
+
+            supportFragmentManager.beginTransaction().replace(R.id.frameContainer, temp).commit()
             true
         }
 

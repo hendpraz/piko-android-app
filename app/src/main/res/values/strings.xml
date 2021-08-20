@@ -40,5 +40,6 @@
     <string name="cd_favorite_fav">Favorite FAV</string>
     <string name="title_history">History</string>
     <string name="title_favorite">Favorite</string>
+    <string name="contact_history">Contact History</string>
 
 </resources>

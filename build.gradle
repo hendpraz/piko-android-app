@@ -25,6 +25,8 @@ buildscript {
 
     ext.koin_version = "2.1.6"
 
+    ext.lottie_version = "3.4.1"
+
     ext.viewmodel_version = "2.2.0"
     ext.navigation_component_version = "2.2.2"
 
