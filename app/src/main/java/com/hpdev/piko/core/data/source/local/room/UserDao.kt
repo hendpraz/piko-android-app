@@ -9,7 +9,7 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun getAllUsers(): LiveData<List<UserEntity>>
 
-    @Query("SELECT * FROM users LIMIT 3")
+    @Query("SELECT * FROM users ORDER BY dateAdded LIMIT 3 ")
     fun getRecentUsers(): LiveData<List<UserEntity>>
 
     @Query("SELECT * FROM users LIMIT 6")

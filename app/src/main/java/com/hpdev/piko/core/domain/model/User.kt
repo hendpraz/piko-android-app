@@ -11,5 +11,6 @@ data class User (
     var mainCategory: String,
     var avatar: String,
     var mainContact: String,
+    var dateAdded: String,
     var isFavorite: Boolean
 ) : Parcelable

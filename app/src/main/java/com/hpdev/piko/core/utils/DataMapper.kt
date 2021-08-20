@@ -15,6 +15,7 @@ object DataMapper {
                 mainCategory = it.mainCategory,
                 avatar = it.avatar,
                 mainContact = it.mainContact,
+                dateAdded = it.dateAdded,
                 isFavorite = false
             )
             userList.add(user)
@@ -31,6 +32,7 @@ object DataMapper {
                 mainCategory = it.mainCategory,
                 avatar = it.avatar,
                 mainContact = it.mainContact,
+                dateAdded = it.dateAdded,
                 isFavorite = it.isFavorite
             )
         }
@@ -41,6 +43,7 @@ object DataMapper {
         mainCategory = input.mainCategory,
         avatar = input.avatar,
         mainContact = input.mainContact,
+        dateAdded = input.dateAdded,
         isFavorite = input.isFavorite
     )
 }

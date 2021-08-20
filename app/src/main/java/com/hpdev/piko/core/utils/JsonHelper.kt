@@ -35,15 +35,16 @@ class JsonHelper(private val context: Context) {
             val avatar = user.getString("avatar")
             val mainContact = user.getString("email")
 
-            val courseResponse = UserResponse(
+            val userResponse = UserResponse(
                 userId = id,
                 fullName = fullName,
                 nickname = nickname,
                 mainCategory = mainCategory,
                 avatar = avatar,
-                mainContact = mainContact
+                mainContact = mainContact,
+                dateAdded = "2008-10-11 13:23:44"
             )
-            list.add(courseResponse)
+            list.add(userResponse)
         }
         return list
     }

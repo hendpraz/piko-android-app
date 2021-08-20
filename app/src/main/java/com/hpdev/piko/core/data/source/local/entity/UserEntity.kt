@@ -30,6 +30,9 @@ data class UserEntity (
     @ColumnInfo(name = "mainContact")
     var mainContact: String,
 
+    @ColumnInfo(name = "dateAdded")
+    var dateAdded: String,
+
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
 ) : Parcelable

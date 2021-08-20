@@ -5,6 +5,7 @@ import com.hpdev.piko.core.data.UserRepository
 import com.hpdev.piko.core.data.source.local.LocalDataSource
 import com.hpdev.piko.core.data.source.local.room.UserDatabase
 import com.hpdev.piko.core.data.source.remote.RemoteDataSource
+import com.hpdev.piko.core.data.source.remote.network.ApiConfig
 import com.hpdev.piko.core.domain.repository.IUserRepository
 import com.hpdev.piko.core.domain.usecase.UserInteractor
 import com.hpdev.piko.core.domain.usecase.UserUseCase
@@ -15,7 +16,7 @@ object Injection {
     fun provideRepository(context: Context): IUserRepository {
         val database = UserDatabase.getInstance(context)
 
-        val remoteDataSource = RemoteDataSource.getInstance(JsonHelper(context))
+        val remoteDataSource = RemoteDataSource.getInstance(ApiConfig.provideApiService())
         val localDataSource = LocalDataSource.getInstance(database.userDao())
         val appExecutors = AppExecutors()
 

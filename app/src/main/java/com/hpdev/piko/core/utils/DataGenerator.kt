@@ -14,6 +14,7 @@ fun generateEmptyFavorites() : MutableList<User> {
             mainCategory = "",
             avatar = "add",
             mainContact = "",
+            dateAdded = "",
             isFavorite = false
         )
     )
