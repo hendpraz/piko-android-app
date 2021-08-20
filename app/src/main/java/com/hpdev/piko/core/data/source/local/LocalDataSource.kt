@@ -4,18 +4,11 @@ import androidx.lifecycle.LiveData
 import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.data.source.local.room.UserDao
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDataSource private constructor(private val userDao: UserDao) {
-
-    companion object {
-        private var instance: LocalDataSource? = null
-
-        fun getInstance(userDao: UserDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(userDao)
-            }
-    }
-
+@Singleton
+class LocalDataSource @Inject constructor(private val userDao: UserDao) {
     fun getAllUsers(): Flow<List<UserEntity>> = userDao.getAllUsers()
 
     fun getRecentUsers(): Flow<List<UserEntity>> = userDao.getRecentUsers()

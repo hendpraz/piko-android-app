@@ -4,19 +4,29 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hpdev.piko.MyApplication
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.ActivityFavoritesBinding
 import com.hpdev.piko.detail.DetailUserActivity
+import javax.inject.Inject
 
 class FavoritesActivity : AppCompatActivity() {
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val favoritesViewModel: FavoritesViewModel by viewModels {
+        factory
+    }
+
     private lateinit var binding: ActivityFavoritesBinding
-    private lateinit var favoritesViewModel: FavoritesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityFavoritesBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -30,9 +40,6 @@ class FavoritesActivity : AppCompatActivity() {
                 startActivity(detailIntent)
             }
         })
-
-        val factory = ViewModelFactory.getInstance(this)
-        favoritesViewModel = ViewModelProvider(this, factory)[FavoritesViewModel::class.java]
 
         favoritesViewModel.favoriteUsers.observe(this, {
             contactsAdapter.setData(it)

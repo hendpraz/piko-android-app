@@ -1,26 +1,39 @@
 package com.hpdev.piko.contacts
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hpdev.piko.MyApplication
 import com.hpdev.piko.R
 import com.hpdev.piko.core.data.Resource
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.FragmentContactsBinding
 import com.hpdev.piko.detail.DetailUserActivity
+import javax.inject.Inject
 
 class ContactsFragment : Fragment() {
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val contactsViewModel: ContactsViewModel by viewModels {
+        factory
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
+
     private lateinit var binding: FragmentContactsBinding
     private lateinit var topUsersAdapter: ContactsListAdapter
-    private lateinit var contactsViewModel: ContactsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +64,6 @@ class ContactsFragment : Fragment() {
                 // start activity, to contacts activity
                 startActivity(contactsIntent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireContext())
-            contactsViewModel = ViewModelProvider(this, factory)[ContactsViewModel::class.java]
 
             contactsViewModel.topUsers.observe(viewLifecycleOwner, {
                 if (it != null) {

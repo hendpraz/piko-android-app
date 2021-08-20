@@ -1,13 +1,16 @@
 package com.hpdev.piko.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hpdev.piko.MyApplication
 import com.hpdev.piko.R
 import com.hpdev.piko.databinding.FragmentHomeContactsBinding
 import com.hpdev.piko.contacts.ContactsActivity
@@ -19,16 +22,27 @@ import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.core.utils.generateEmptyFavorites
 import com.hpdev.piko.detail.DetailUserActivity
 import com.hpdev.piko.favorites.FavoritesActivity
+import javax.inject.Inject
 
 class HomeContactsFragment : Fragment(){
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val homeViewModel: HomeViewModel by viewModels {
+        factory
+    }
+
     private lateinit var binding: FragmentHomeContactsBinding
     private lateinit var favoritesAdapter: ContactsHorizontalAdapter
     private lateinit var recentAdapter: ContactsListAdapter
 
-    private lateinit var homeViewModel: HomeViewModel
-
     companion object {
         const val EMPTY_FAVORITES_ID = -999
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,9 +66,6 @@ class HomeContactsFragment : Fragment(){
             })
 
             favoritesAdapter = ContactsHorizontalAdapter()
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.topFavorites.observe(viewLifecycleOwner, {
                 if (it != null) {

@@ -4,23 +4,31 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hpdev.piko.MyApplication
 import com.hpdev.piko.R
 import com.hpdev.piko.core.data.Resource
-import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsListAdapter
 import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.databinding.ActivityContactsBinding
 import com.hpdev.piko.detail.DetailUserActivity
+import javax.inject.Inject
 
 class ContactsActivity : AppCompatActivity() {
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val contactsViewModel: ContactsViewModel by viewModels {
+        factory
+    }
+
     private lateinit var binding: ActivityContactsBinding
     private lateinit var allContacts: ContactsListAdapter
-    private lateinit var contactsViewModel: ContactsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityContactsBinding.inflate(layoutInflater)
 
@@ -35,9 +43,6 @@ class ContactsActivity : AppCompatActivity() {
                 startActivity(detailIntent)
             }
         })
-
-        val factory = ViewModelFactory.getInstance(this)
-        contactsViewModel = ViewModelProvider(this, factory)[ContactsViewModel::class.java]
 
         contactsViewModel.allUsers.observe(this, {
             if (it != null) {
