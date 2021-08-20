@@ -6,11 +6,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("users")
-    fun getAllUsers(): Call<ListUserResponse>
-
-    @GET("recent-users")
-    fun getRecentUsers(): Call<ListUserResponse>
-
-    @GET("top-users")
-    fun getTopUsers(): Call<ListUserResponse>
+    suspend fun getAllUsers(): ListUserResponse
 }

@@ -1,7 +1,5 @@
 package com.hpdev.piko.core.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.hpdev.piko.core.data.source.local.LocalDataSource
 import com.hpdev.piko.core.data.source.remote.RemoteDataSource
 import com.hpdev.piko.core.data.source.remote.network.ApiResponse
@@ -10,6 +8,8 @@ import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.domain.repository.IUserRepository
 import com.hpdev.piko.core.utils.AppExecutors
 import com.hpdev.piko.core.utils.DataMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class UserRepository  private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -31,76 +31,66 @@ class UserRepository  private constructor(
             }
     }
 
-    override fun getAllUsers(): LiveData<Resource<List<User>>> =
+    override fun getAllUsers(): Flow<Resource<List<User>>> =
         object : NetworkBoundResource<List<User>, List<UserResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<User>> {
-                return Transformations.map(localDataSource.getAllUsers()) {
-                    DataMapper.mapEntitiesToDomain(it)
-                }
+            override fun loadFromDB(): Flow<List<User>> {
+                return localDataSource.getAllUsers().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<User>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<UserResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<UserResponse>>> =
                 remoteDataSource.getAllUsers()
 
-            override fun saveCallResult(data: List<UserResponse>) {
+            override suspend fun saveCallResult(data: List<UserResponse>) {
                 val userList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertUser(userList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getRecentUsers(): LiveData<Resource<List<User>>> =
+    override fun getRecentUsers(): Flow<Resource<List<User>>> =
         object : NetworkBoundResource<List<User>, List<UserResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<User>> {
-                return Transformations.map(localDataSource.getRecentUsers()) {
-                    DataMapper.mapEntitiesToDomain(it)
-                }
+            override fun loadFromDB(): Flow<List<User>> {
+                return localDataSource.getRecentUsers().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<User>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<UserResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<UserResponse>>> =
                 remoteDataSource.getAllUsers()
 
-            override fun saveCallResult(data: List<UserResponse>) {
+            override suspend fun saveCallResult(data: List<UserResponse>) {
                 val userList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertUser(userList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getTopUsers(): LiveData<Resource<List<User>>> =
+    override fun getTopUsers(): Flow<Resource<List<User>>> =
         object : NetworkBoundResource<List<User>, List<UserResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<User>> {
-                return Transformations.map(localDataSource.getTopUsers()) {
-                    DataMapper.mapEntitiesToDomain(it)
-                }
+            override fun loadFromDB(): Flow<List<User>> {
+                return localDataSource.getTopUsers().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<User>?): Boolean =
                 data == null || data.isEmpty()
 
-            override fun createCall(): LiveData<ApiResponse<List<UserResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<UserResponse>>> =
                 remoteDataSource.getAllUsers()
 
-            override fun saveCallResult(data: List<UserResponse>) {
+            override suspend fun saveCallResult(data: List<UserResponse>) {
                 val userList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertUser(userList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getTopFavoriteUsers(): LiveData<List<User>> {
-        return Transformations.map(localDataSource.getTopFavoriteUsers()) {
-            DataMapper.mapEntitiesToDomain(it)
-        }
+    override fun getTopFavoriteUsers(): Flow<List<User>> {
+        return localDataSource.getTopFavoriteUsers().map { DataMapper.mapEntitiesToDomain(it) }
     }
 
-    override fun getFavoriteUsers(): LiveData<List<User>> {
-        return Transformations.map(localDataSource.getFavoriteUsers()) {
-            DataMapper.mapEntitiesToDomain(it)
-        }
+    override fun getFavoriteUsers(): Flow<List<User>> {
+        return localDataSource.getFavoriteUsers().map { DataMapper.mapEntitiesToDomain(it) }
     }
 
     override fun setFavoriteUser(user: User, state: Boolean) {

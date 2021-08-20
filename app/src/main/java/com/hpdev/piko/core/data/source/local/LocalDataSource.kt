@@ -3,6 +3,7 @@ package com.hpdev.piko.core.data.source.local
 import androidx.lifecycle.LiveData
 import com.hpdev.piko.core.data.source.local.entity.UserEntity
 import com.hpdev.piko.core.data.source.local.room.UserDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource private constructor(private val userDao: UserDao) {
 
@@ -15,17 +16,17 @@ class LocalDataSource private constructor(private val userDao: UserDao) {
             }
     }
 
-    fun getAllUsers(): LiveData<List<UserEntity>> = userDao.getAllUsers()
+    fun getAllUsers(): Flow<List<UserEntity>> = userDao.getAllUsers()
 
-    fun getRecentUsers(): LiveData<List<UserEntity>> = userDao.getRecentUsers()
+    fun getRecentUsers(): Flow<List<UserEntity>> = userDao.getRecentUsers()
 
-    fun getTopUsers(): LiveData<List<UserEntity>> = userDao.getTopUsers()
+    fun getTopUsers(): Flow<List<UserEntity>> = userDao.getTopUsers()
 
-    fun getFavoriteUsers(): LiveData<List<UserEntity>> = userDao.getFavoriteUsers()
+    fun getFavoriteUsers(): Flow<List<UserEntity>> = userDao.getFavoriteUsers()
 
-    fun getTopFavoriteUsers(): LiveData<List<UserEntity>> = userDao.getTopFavoriteUsers()
+    fun getTopFavoriteUsers(): Flow<List<UserEntity>> = userDao.getTopFavoriteUsers()
 
-    fun insertUser(userList: List<UserEntity>) = userDao.insertUsers(userList)
+    suspend fun insertUser(userList: List<UserEntity>) = userDao.insertUsers(userList)
 
     fun setFavoriteUser(user: UserEntity, newState: Boolean) {
         user.isFavorite = newState

@@ -3,26 +3,27 @@ package com.hpdev.piko.core.data.source.local.room
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.hpdev.piko.core.data.source.local.entity.UserEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
     @Query("SELECT * FROM users")
-    fun getAllUsers(): LiveData<List<UserEntity>>
+    fun getAllUsers(): Flow<List<UserEntity>>
 
-    @Query("SELECT * FROM users ORDER BY dateAdded LIMIT 3 ")
-    fun getRecentUsers(): LiveData<List<UserEntity>>
+    @Query("SELECT * FROM users ORDER BY dateAdded DESC LIMIT 3 ")
+    fun getRecentUsers(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM users LIMIT 6")
-    fun getTopUsers(): LiveData<List<UserEntity>>
+    fun getTopUsers(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM users WHERE isFavorite = 1")
-    fun getFavoriteUsers(): LiveData<List<UserEntity>>
+    fun getFavoriteUsers(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM users WHERE isFavorite = 1 LIMIT 6")
-    fun getTopFavoriteUsers(): LiveData<List<UserEntity>>
+    fun getTopFavoriteUsers(): Flow<List<UserEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUsers(users: List<UserEntity>)
+    suspend fun insertUsers(users: List<UserEntity>)
 
     @Update
     fun updateFavoriteUser(user: UserEntity)
