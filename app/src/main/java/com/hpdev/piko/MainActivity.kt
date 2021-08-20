@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().replace(R.id.frameContainer, HomeFragment()).commit()
 
-        bottomNavigationView.setOnItemSelectedListener {
+        bottomNavigationView.setOnNavigationItemSelectedListener {
             val temp: Fragment = when (it.itemId) {
                 R.id.mHome -> HomeFragment()
                 R.id.mContacts -> ContactsFragment()

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorite_item_image">Favorite Item Image</string>
+    <string name="nickname">Nickname</string>
+
+    <string name="username_ig_instagram">username_ig (Instagram)</string>
+    <string name="category_list">Category</string>
+    <string name="nickname_list">Nickname</string>
+</resources>

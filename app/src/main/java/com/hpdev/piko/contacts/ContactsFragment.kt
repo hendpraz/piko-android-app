@@ -59,7 +59,7 @@ class ContactsFragment : Fragment() {
 
                             if (it.data != null) {
                                 topUsersAdapter.setData(it.data)
-                                if (it.data.isNotEmpty()) {
+                                if (it.data!!.isNotEmpty()) {
                                     binding.viewEmpty.root.visibility = View.GONE
                                     binding.tvViewAll.visibility = View.VISIBLE
                                 } else {

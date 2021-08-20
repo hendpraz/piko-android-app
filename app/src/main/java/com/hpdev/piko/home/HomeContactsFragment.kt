@@ -26,10 +26,6 @@ class HomeContactsFragment : Fragment(){
 
     private val homeViewModel: HomeViewModel by viewModel()
 
-    companion object {
-        const val EMPTY_FAVORITES_ID = -999
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
@@ -104,7 +100,7 @@ class HomeContactsFragment : Fragment(){
 
                             if (it.data != null) {
                                 recentAdapter.setData(it.data)
-                                if (it.data.isNotEmpty()) {
+                                if (it.data!!.isNotEmpty()) {
                                     binding.tvRecentlyAdded.visibility = View.VISIBLE
                                     binding.rvHomeRecent.visibility = View.VISIBLE
                                 } else {
