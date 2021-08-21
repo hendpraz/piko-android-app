@@ -47,7 +47,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/raleway_bold"
-                android:text="add contact"
+                android:text="@string/add_contact"
                 android:textAllCaps="false"
                 android:drawableEnd="@drawable/ic_baseline_person_add_24"
                 app:cornerRadius="8dp"
