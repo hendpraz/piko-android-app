@@ -110,9 +110,11 @@ class HomeContactsFragment : Fragment(){
                             }
                         }
                         is Resource.Error -> {
-                            binding.progressBar.visibility = View.GONE
-                            binding.viewError.root.visibility = View.VISIBLE
-                            binding.viewError.tvError.text = it.message ?: getString(R.string.something_went_wrong)
+                            binding.apply {
+                                progressBar.visibility = View.GONE
+                                viewError.root.visibility = View.VISIBLE
+                                viewError.tvError.text = it.message ?: getString(R.string.something_went_wrong)
+                            }
                         }
                     }
 
