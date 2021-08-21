@@ -10,7 +10,7 @@
     <string name="contact_details_share">contact details share</string>
     <string name="contact_details_back">contact details back</string>
     <string name="contact_details_icon">Contact Image</string>
-    <string name="contact_details_text">0812-3456-7890</string>
+    <string name="contact_details_text">0812–3456–7890</string>
     <string name="contact_section_header">Contact</string>
     <string name="contact_header_nickname">Nickname</string>
     <string name="contact_header_full_name">This Is A Full Name</string>
@@ -25,17 +25,13 @@
     <string name="cd_add_contact_img">add contact card image</string>
     <string name="piko_title">People I Know - On The List</string>
     <string name="setting_button_image">setting button image</string>
-    <string name="search_saved_contacts">Search saved contacts...</string>
-    <string name="nyd_history_page">History Page\nNot yet developed</string>
+    <string name="search_saved_contacts">Search saved contacts…</string>
     <string name="contacts_fragment_title">Contacts</string>
-    <string name="nyd_settings_page">Settings Page\nNot yet developed</string>
     <string name="nyd_search_page">Search Page\nNot yet developed</string>
-    <string name="nyd_favorites_page">Favorites Page\nNot yet developed</string>
     <string name="contacts_title_activity">Contacts</string>
     <string name="nyd_add_contact_page">Add Contact Page\nNot yet developed</string>
     <string name="my_favorites">My Favorites</string>
     <string name="cd_favorite_fav">Favorite FAV</string>
-    <string name="title_history">History</string>
     <string name="title_favorite">Favorite</string>
     <string name="contact_history">Contact History</string>
     <string name="settings_activity_title">Settings</string>
@@ -43,4 +39,10 @@
     <string name="power_connected">Power connected!</string>
     <string name="power_disconnected">Power disconnected!</string>
     <string name="power_info">Unplug/plug your charger to see info</string>
+    <string name="cd_add_contact_home">add contact image</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_contacts">Contacts</string>
+    <string name="nav_history">History</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nyd_profile_page">Profile Page\nNot yet developed</string>
 </resources>
