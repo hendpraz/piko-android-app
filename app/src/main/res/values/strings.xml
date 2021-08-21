@@ -39,7 +39,6 @@
     <string name="power_connected">Power connected!</string>
     <string name="power_disconnected">Power disconnected!</string>
     <string name="power_info">Unplug/plug your charger to see info</string>
-    <string name="cd_add_contact_home">add contact image</string>
     <string name="nav_home">Home</string>
     <string name="nav_contacts">Contacts</string>
     <string name="nav_history">History</string>
