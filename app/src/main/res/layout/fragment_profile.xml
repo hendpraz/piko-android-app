@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Profile Page\nNot yet developed"
+        android:text="@string/nyd_profile_page"
         android:textSize="20sp"
         android:gravity="center" />
 

@@ -24,9 +24,12 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(2).isEnabled = false
 
+        // set default fragment
         supportFragmentManager.beginTransaction().replace(R.id.frameContainer, HomeFragment()).commit()
+        bottomNavigationView.selectedItemId = R.id.mHome
 
-        bottomNavigationView.setOnItemSelectedListener {
+        // bottom nav menu onclick
+        bottomNavigationView.setOnNavigationItemSelectedListener {
             val temp: Fragment = when (it.itemId) {
                 R.id.mHome -> HomeFragment()
                 R.id.mContacts -> ContactsFragment()
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        // set fab onclick
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             val addContactIntent = Intent(this@MainActivity, AddContactActivity::class.java)

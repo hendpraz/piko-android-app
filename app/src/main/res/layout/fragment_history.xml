@@ -5,11 +5,40 @@
     android:layout_height="match_parent"
     tools:context=".history.HistoryFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/nyd_history_page"
-        android:textSize="20sp"
-        android:gravity="center" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvAllContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_history"
+            android:textSize="18sp"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/raleway_semi_bold"
+            android:layout_marginEnd="22dp"
+            android:gravity="center"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="18dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/view_empty"
+        layout="@layout/view_empty" />
 
 </FrameLayout>

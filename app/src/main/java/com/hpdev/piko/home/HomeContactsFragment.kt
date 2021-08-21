@@ -1,16 +1,13 @@
 package com.hpdev.piko.home
 
-import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hpdev.piko.MyApplication
 import com.hpdev.piko.R
 import com.hpdev.piko.databinding.FragmentHomeContactsBinding
 import com.hpdev.piko.contacts.ContactsActivity
@@ -18,32 +15,16 @@ import com.hpdev.piko.core.data.Resource
 import com.hpdev.piko.core.domain.model.User
 import com.hpdev.piko.core.ui.ContactsHorizontalAdapter
 import com.hpdev.piko.core.ui.ContactsListAdapter
-import com.hpdev.piko.core.ui.ViewModelFactory
 import com.hpdev.piko.core.utils.generateEmptyFavorites
 import com.hpdev.piko.detail.DetailUserActivity
-import com.hpdev.piko.favorites.FavoritesActivity
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeContactsFragment : Fragment(){
-    @Inject
-    lateinit var factory: ViewModelFactory
-
-    private val homeViewModel: HomeViewModel by viewModels {
-        factory
-    }
-
     private lateinit var binding: FragmentHomeContactsBinding
     private lateinit var favoritesAdapter: ContactsHorizontalAdapter
     private lateinit var recentAdapter: ContactsListAdapter
 
-    companion object {
-        const val EMPTY_FAVORITES_ID = -999
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().application as MyApplication).appComponent.inject(this)
-    }
+    private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -83,8 +64,8 @@ class HomeContactsFragment : Fragment(){
                             }
                         })
                         binding.tvFavViewAll.setOnClickListener {
-                            val favoritesIntent = Intent(activity, FavoritesActivity::class.java)
-                            startActivity(favoritesIntent)
+                            val uri = Uri.parse("piko://favorite")
+                            startActivity(Intent(Intent.ACTION_VIEW, uri))
                         }
                     } else {
                         val favoriteUsers = generateEmptyFavorites()
@@ -119,7 +100,7 @@ class HomeContactsFragment : Fragment(){
 
                             if (it.data != null) {
                                 recentAdapter.setData(it.data)
-                                if (it.data.isNotEmpty()) {
+                                if (it.data!!.isNotEmpty()) {
                                     binding.tvRecentlyAdded.visibility = View.VISIBLE
                                     binding.rvHomeRecent.visibility = View.VISIBLE
                                 } else {
@@ -129,9 +110,11 @@ class HomeContactsFragment : Fragment(){
                             }
                         }
                         is Resource.Error -> {
-                            binding.progressBar.visibility = View.GONE
-                            binding.viewError.root.visibility = View.VISIBLE
-                            binding.viewError.tvError.text = it.message ?: getString(R.string.something_went_wrong)
+                            binding.apply {
+                                progressBar.visibility = View.GONE
+                                viewError.root.visibility = View.VISIBLE
+                                viewError.tvError.text = it.message ?: getString(R.string.something_went_wrong)
+                            }
                         }
                     }
 

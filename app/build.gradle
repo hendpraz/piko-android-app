@@ -1,10 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
+apply from: '../shared_dependencies.gradle'
 
 android {
     compileSdkVersion 30
@@ -23,7 +23,11 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -36,103 +40,22 @@ android {
     buildFeatures {
         viewBinding true
     }
+    lintOptions {
+        disable 'TypographyFractions','TypographyQuotes'
+        abortOnError false
+        checkReleaseBuilds false
+        baseline file("lint-baseline.xml")
+        quiet true
+        ignoreWarnings true
+    }
+    dynamicFeatures = [':favorite']
 }
 
 dependencies {
+    implementation project(":core")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'androidx.core:core-ktx:1.6.0'
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation "androidx.test:rules:1.2.0"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-
-    // espresso
-    def espresso_version = "3.2.0"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
-
-    // ui
-    implementation 'com.google.android.material:material:1.4.0'
-
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-    def glide_version = "4.11.0"
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
-
-    def viewModel_version = "2.2.0"
-    implementation "androidx.lifecycle:lifecycle-extensions:$viewModel_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$viewModel_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
-
-    def navigation_component_version = "2.2.2"
-    implementation "androidx.navigation:navigation-fragment:$navigation_component_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_component_version"
-    implementation "androidx.navigation:navigation-ui:$navigation_component_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_component_version"
-
-    // mockito
-    def mockito_version = "2.23.4"
-    testImplementation "org.mockito:mockito-core:$mockito_version"
-    testImplementation "org.mockito:mockito-inline:$mockito_version"
-
-    // mockito kotlin
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-
-    // idling resource
-    implementation "androidx.test.espresso:espresso-idling-resource:3.2.0"
-
-    // retrofit
-    def retrofit_version = "2.9.0"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
-    // okHttp3
-    def okHttp3_version = "4.4.0"
-    implementation "com.squareup.okhttp3:okhttp:$okHttp3_version"
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okHttp3_version"
-
-    def logging_interceptor_version = "4.8.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
-
-    // coroutine
-    def coroutine_version = "1.3.9"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
-
-    // room
-    def room_version = "2.2.5"
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
-    // lifecycle
-    def lifecycle_version = "2.2.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
-    // paging
-    implementation "androidx.paging:paging-runtime-ktx:3.0.0"
-
-    // dagger
-    def dagger_version = "2.29.1"
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
-    // by viewModels di Activity dan Fragment
-    def activity_ktx_version = "1.1.0"
-    def fragment_ktx_version = "1.2.5"
-    implementation "androidx.activity:activity-ktx:$activity_ktx_version"
-    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
-
-    // hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "com.airbnb.android:lottie:$lottie_version"
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }

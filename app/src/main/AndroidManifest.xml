@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:fullBackupContent="true"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,9 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Piko">
-        <activity android:name="com.hpdev.piko.add_contact.AddContactActivity"></activity>
+        <activity android:name="com.hpdev.piko.add_contact.AddContactActivity" />
         <activity android:name="com.hpdev.piko.contacts.ContactsActivity" />
-        <activity android:name="com.hpdev.piko.favorites.FavoritesActivity" />
         <activity android:name="com.hpdev.piko.settings.SettingsActivity" />
         <activity android:name="com.hpdev.piko.detail.DetailUserActivity" />
         <activity android:name="com.hpdev.piko.search.SearchActivity" />
