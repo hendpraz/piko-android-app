@@ -40,7 +40,9 @@ class UserRepository(
                 return localDataSource.getRecentUsers().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
-            override fun shouldFetch(data: List<User>?): Boolean = true
+            override fun shouldFetch(data: List<User>?): Boolean {
+                return data == null || data.isEmpty()
+            }
 
             override suspend fun createCall(): Flow<ApiResponse<List<UserResponse>>> =
                 remoteDataSource.getAllUsers()
@@ -57,7 +59,9 @@ class UserRepository(
                 return localDataSource.getTopUsers().map { DataMapper.mapEntitiesToDomain(it) }
             }
 
-            override fun shouldFetch(data: List<User>?): Boolean = true
+            override fun shouldFetch(data: List<User>?): Boolean {
+                return data == null || data.isEmpty()
+            }
 
             override suspend fun createCall(): Flow<ApiResponse<List<UserResponse>>> =
                 remoteDataSource.getAllUsers()

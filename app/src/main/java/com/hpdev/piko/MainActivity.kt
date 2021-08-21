@@ -16,13 +16,6 @@ import com.hpdev.piko.profile.ProfileFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
-    override fun onStart() {
-        super.onStart()
-
-        // always select home nav onStart
-        bottomNavigationView.selectedItemId = R.id.mHome
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
