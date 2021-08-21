@@ -41,7 +41,12 @@ android {
         viewBinding true
     }
     lintOptions {
+        disable 'TypographyFractions','TypographyQuotes'
         abortOnError false
+        checkReleaseBuilds false
+        baseline file("lint-baseline.xml")
+        quiet true
+        ignoreWarnings true
     }
     dynamicFeatures = [':favorite']
 }
