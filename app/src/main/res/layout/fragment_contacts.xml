@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="22dp"
@@ -8,24 +9,47 @@
     android:paddingBottom="56dp"
     >
 
+    <EditText
+        android:id="@+id/contactEt"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/ic_baseline_person_search_24"
+        android:drawablePadding="12dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/raleway_semi_bold"
+        android:hint="@string/search_saved_contacts"
+        android:inputType="none"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints="" />
+
     <TextView
         android:id="@+id/tvFavorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@color/black"
+        android:layout_below="@id/contactEt"
         android:text="@string/contacts_fragment_title"
         />
 
     <TextView
-        android:id="@+id/tvViewAll"
+        android:id="@+id/tvSort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@color/dark_blue"
-        android:text="@string/view_all"
+        android:text="@string/sort_by_title"
         android:layout_marginEnd="22dp"
         android:gravity="end"
+        app:drawableEndCompat="@drawable/ic_baseline_sort_24"
+        android:layout_below="@id/contactEt"
         />
 
     <androidx.recyclerview.widget.RecyclerView

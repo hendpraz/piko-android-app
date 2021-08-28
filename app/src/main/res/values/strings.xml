@@ -44,4 +44,6 @@
     <string name="nav_history">History</string>
     <string name="nav_profile">Profile</string>
     <string name="nyd_profile_page">Profile Page\nNot yet developed</string>
+    <string name="nyd_settings_page">Settings Page\nNot yet developed</string>
+    <string name="sort_by_title">Sort</string>
 </resources>

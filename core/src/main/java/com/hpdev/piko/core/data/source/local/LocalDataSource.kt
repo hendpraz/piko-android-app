@@ -19,6 +19,22 @@ class LocalDataSource(private val userDao: UserDao) {
 
     fun setFavoriteUser(user: UserEntity, newState: Boolean) {
         user.isFavorite = newState
-        userDao.updateFavoriteUser(user)
+        userDao.updateUser(user)
+    }
+
+    fun addUser(userEntity: UserEntity) = userDao.insertUser(userEntity)
+
+    fun deleteUser(userEntity: UserEntity) = userDao.deleteUser(userEntity)
+
+    fun updateUser(userEntity: UserEntity) = userDao.updateUser(userEntity)
+
+    fun setMainCategoryUser(userEntity: UserEntity, mainCategory: String) {
+        userEntity.mainCategory = mainCategory
+        userDao.updateUser(userEntity)
+    }
+
+    fun setMainContactUser(userEntity: UserEntity, mainContact: String) {
+        userEntity.mainContact = mainContact
+        userDao.updateUser(userEntity)
     }
 }

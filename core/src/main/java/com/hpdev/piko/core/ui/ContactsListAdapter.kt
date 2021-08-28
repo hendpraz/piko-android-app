@@ -23,6 +23,8 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactsListAdapter.ListViewHol
         notifyDataSetChanged()
     }
 
+    fun getData() = this.listUser
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_home_item2, parent, false)
         return ListViewHolder(view)
@@ -63,7 +65,7 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactsListAdapter.ListViewHol
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cardView : CardView = itemView.findViewById(R.id.cvItemRecent)
         var imageView : ImageView = itemView.findViewById(R.id.imgPoster)
-        var tvNickname : TextView = itemView.findViewById(R.id.tvNickname)
+        var tvNickname : TextView = itemView.findViewById(R.id.tvFullName)
         var tvCategory : TextView = itemView.findViewById(R.id.tvCategory)
         var tvMainContact : TextView = itemView.findViewById(R.id.tvMainContact)
     }

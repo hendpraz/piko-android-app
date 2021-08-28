@@ -16,4 +16,15 @@ class UserInteractor(private val userRepository: IUserRepository) : UserUseCase{
 
     override fun setFavoriteUser(user: User, state: Boolean) = userRepository.setFavoriteUser(user, state)
 
+    override fun addUser(user: User) = userRepository.addUser(user)
+
+    override fun deleteUser(user: User) = userRepository.deleteUser(user)
+
+    override fun updateUser(user: User) = userRepository.updateUser(user)
+
+    override fun setMainContactUser(user: User, mainContact: String) = userRepository.setMainContactUser(user, mainContact)
+
+    override fun setMainCategoryUser(user: User, mainCategory: String) = userRepository.setMainCategoryUser(user, mainCategory)
+
+
 }

@@ -84,4 +84,29 @@ class UserRepository(
         val userEntity = DataMapper.mapDomainToEntity(user)
         appExecutors.diskIO().execute { localDataSource.setFavoriteUser(userEntity, state) }
     }
+
+    override fun addUser(user: User) {
+        val userEntity = DataMapper.mapDomainToEntity(user)
+        appExecutors.diskIO().execute { localDataSource.addUser(userEntity) }
+    }
+
+    override fun deleteUser(user: User) {
+        val userEntity = DataMapper.mapDomainToEntity(user)
+        appExecutors.diskIO().execute { localDataSource.deleteUser(userEntity) }
+    }
+
+    override fun updateUser(user: User) {
+        val userEntity = DataMapper.mapDomainToEntity(user)
+        appExecutors.diskIO().execute { localDataSource.updateUser(userEntity) }
+    }
+
+    override fun setMainContactUser(user: User, mainContact: String) {
+        val userEntity = DataMapper.mapDomainToEntity(user)
+        appExecutors.diskIO().execute { localDataSource.setMainContactUser(userEntity, mainContact) }
+    }
+
+    override fun setMainCategoryUser(user: User, mainCategory: String) {
+        val userEntity = DataMapper.mapDomainToEntity(user)
+        appExecutors.diskIO().execute { localDataSource.setMainCategoryUser(userEntity, mainCategory) }
+    }
 }
